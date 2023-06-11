@@ -25,6 +25,8 @@ class AuthService:
 
     def login(self, data):
         user = user_service.get_user_by_email(data.get('email'))
+        if not user:
+            return None
         password_ok = check_password_hash(user.password, data.get('password'))
         if not password_ok:
             return None
