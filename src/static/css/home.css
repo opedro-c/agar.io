@@ -1,0 +1,17 @@
+body {
+    align-items: center;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.background {
+    background-color: #15172b;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding: 20px;
+    width: 320px;
+}

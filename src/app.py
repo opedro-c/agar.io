@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_cors import CORS
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -22,6 +22,10 @@ def create_app():
     from controllers import users, auth
     app.register_blueprint(users)
     app.register_blueprint(auth)
+
+    @app.route('/')
+    def home():
+        return render_template('register.html')
 
     @login_manager.user_loader
     def load_user(user_id):
