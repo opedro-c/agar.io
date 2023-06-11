@@ -1,6 +1,7 @@
-from models import db
+from flask_login import login_user
+from models import db, User
 from serializers import user_serializer
-from werkzeug.security import generate_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class UserService:
@@ -10,7 +11,27 @@ class UserService:
         user.password = generate_password_hash(user.password, method='sha256')
         db.session.add(user)
         db.session.commit()
-        return user_serializer.dump(user)
+        return user
+    
+    def get_user_by_email(self, data):
+        user = User.query.filter_by(email=data).first()
+        return user
 
 
 user_service = UserService()
+
+
+class AuthService:
+
+    def login(self, data):
+        user = user_service.get_user_by_email(data.get('email'))
+        password_ok = check_password_hash(user.password, data.get('password'))
+        if not password_ok:
+            return None
+        login_ok = login_user(user)
+        if not login_ok:
+            return None
+        return user
+
+
+auth_service = AuthService()
