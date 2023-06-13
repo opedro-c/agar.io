@@ -120,28 +120,56 @@ body {
 }
 
 .profile_image {
+    left: 35%;
+    top: 20%;
     height: 100px;
     width: 100px;
     background-color: #bbb;
     border-width: thick;
     border-color: #dc2f55;
     border-radius: 100%;
-    display: block;
     border-style: solid;
     background-image: url(../ico/dog.svg);
-    color: red;
     justify-content: center;
     text-align: center;
     align-items: center;
-    
-  }
-
-  .outer_profile {
-    left: 35%;
-    top: 20%;
+    display: block;
     position: relative;
   }
 
-  .profile_image:hover {
-    filter: brightness(25%);
-  }
+.input_profile_image {
+    display: block;
+    position: relative;
+    top: 25%;
+    left: 21%;
+    color: #bbb;
+}
+.quit {
+    align-items: baseline;
+    justify-content: left;
+    top: 70%;
+    position: absolute;
+    left: 15%;
+    margin: 0%;
+    background: url(../ico/exit.svg) no-repeat;
+    width: 80px;
+    height: 25px;
+    color: #bbb;
+    border-style: none;
+}
+
+.quit:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.submit {
+    background-color: #15172b;
+    color: #bbb;
+    border-radius: 25px;
+    border: thin solid #bbb;
+    top: 70%;
+    left:30%;
+    position: absolute;
+    visibility: hidden;
+}

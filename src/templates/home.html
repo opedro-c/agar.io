@@ -5,19 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>agar.io</title>
     <link rel="stylesheet" href="../static/css/home.css">
+    <script src="../static/js/home.js" defer></script>
 </head>
 <body>
     <div class="background">
-        <div style="flex: 50%;">
-            <div class="outer_profile"> <!--TODO: Add file input to change profile image -->
-                <span class="profile_image" id="profile_image"></span>
-            </div>
+        <form name="profile_form" style="flex: 50%;" id="profile_form" action="http://127.0.0.1:5000/edit" method="POST">
+            <span class="profile_image" id="profile_image"></span>
+            <input type="file" name="profile_image" id="profile_image" class="input_profile_image" title="Change Image">
             <div class="input-container">
-                <input type="text" class="input" name="nickname" placeholder=" ">
+                <input type="text" class="input" name="nickname" placeholder=" " title="Change nickname" id="nickname" required> <!--TODO: Pass nickname to input-->
                 <div class="cut cut-short"></div>
                 <label for="nickname" class="placeholder">Nickname</label>
             </div>
-        </div>
+            <button class="quit" type="button" title="Logs you out">Quit</button>
+            <input type="submit" value="Update profile" class="submit" id="submit">
+        </form>
         <div style="flex: 50%; padding-top: 5%;">
             <button class="btn">Play</button>
             <button class="btn">Create Room</button>

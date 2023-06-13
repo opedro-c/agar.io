@@ -1,4 +1,4 @@
-from flask_login import login_user
+from flask_login import login_user, current_user
 from models import db, User
 from serializers import user_serializer
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,6 +12,13 @@ class UserService:
         db.session.add(user)
         db.session.commit()
         return user
+    
+    def update_nickname(self, nickname):
+        user = User.query.filter(User.id == current_user.id).first()
+        user.nickname = nickname
+        db.session.commit()
+        return user
+
     
     def get_user_by_email(self, data):
         user = User.query.filter_by(email=data).first()

@@ -1,6 +1,5 @@
-from flask import Blueprint, redirect, request, jsonify, make_response, render_template, flash
-from flask_login import current_user
-from serializers import user_serializer
+from flask import Blueprint, request, make_response, render_template
+from flask_login import current_user, login_required
 from services import auth_service, user_service
 
 
@@ -19,6 +18,11 @@ def create():
         201
     )
 
+@users.route('/edit', methods=['POST'])
+@login_required
+def edit():
+    user_service.update_nickname(request.form['nickname'])
+    return render_template('home.html', nickname=current_user.nickname)
 
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
