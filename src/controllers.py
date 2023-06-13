@@ -1,4 +1,4 @@
-from flask import Blueprint, request, make_response, render_template
+from flask import Blueprint, jsonify, request, make_response, render_template
 from flask_login import current_user, login_required
 from services import auth_service, user_service
 
@@ -17,6 +17,13 @@ def create():
         render_template('login.html'),
         201
     )
+
+@users.route('/nickname')
+@login_required
+def nickname():
+    return jsonify({
+        'nickname': current_user.nickname
+    })
 
 @users.route('/edit', methods=['POST'])
 @login_required

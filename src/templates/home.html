@@ -11,9 +11,9 @@
     <div class="background">
         <form name="profile_form" style="flex: 50%;" id="profile_form" action="http://127.0.0.1:5000/edit" method="POST">
             <span class="profile_image" id="profile_image"></span>
-            <input type="file" name="profile_image" id="profile_image" class="input_profile_image" title="Change Image">
+            <!-- <input type="file" name="profile_image" id="profile_image" class="input_profile_image" title="Change Image"> -->
             <div class="input-container">
-                <input type="text" class="input" name="nickname" placeholder=" " title="Change nickname" id="nickname" required> <!--TODO: Pass nickname to input-->
+                <input type="text" class="input" name="nickname" placeholder=" " title="Change nickname" id="nickname" value="{{nickname}}" required>
                 <div class="cut cut-short"></div>
                 <label for="nickname" class="placeholder">Nickname</label>
             </div>
