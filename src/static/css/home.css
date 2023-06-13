@@ -135,7 +135,7 @@ body {
     align-items: center;
     display: block;
     position: relative;
-  }
+}
 
 .input_profile_image {
     display: block;
@@ -144,12 +144,13 @@ body {
     left: 21%;
     color: #bbb;
 }
+
 .quit {
     align-items: baseline;
     justify-content: left;
     top: 70%;
     position: absolute;
-    left: 15%;
+    left: 12%;
     margin: 0%;
     background: url(../ico/exit.svg) no-repeat;
     width: 80px;
@@ -169,7 +170,7 @@ body {
     border-radius: 25px;
     border: thin solid #bbb;
     top: 70%;
-    left:30%;
+    left: 25%;
     position: absolute;
     visibility: hidden;
 }

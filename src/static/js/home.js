@@ -2,7 +2,7 @@ var profile = document.getElementById('profile_form')
 var submitButton = document.getElementById('submit')
 
 async function setNickname() {
-    const response = await fetch('http://127.0.0.1:5000/nickname', {method: 'GET'})
+    const response = await fetch('http://127.0.0.1:5000/nickname', { method: 'GET' })
     const responseJson = await response.json();
     nicknameInput.value = responseJson.nickname
 }

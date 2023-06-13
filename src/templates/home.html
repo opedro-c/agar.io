@@ -1,30 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>agar.io</title>
     <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/chat.css">
     <script src="../static/js/home.js" defer></script>
 </head>
+
 <body>
     <div class="background">
-        <form name="profile_form" style="flex: 50%;" id="profile_form" action="http://127.0.0.1:5000/edit" method="POST">
+        <form name="profile_form" style="flex: 33%;" id="profile_form" action="http://127.0.0.1:5000/edit"
+            method="POST">
             <span class="profile_image" id="profile_image"></span>
             <!-- <input type="file" name="profile_image" id="profile_image" class="input_profile_image" title="Change Image"> -->
             <div class="input-container">
-                <input type="text" class="input" name="nickname" placeholder=" " title="Change nickname" id="nickname" value="{{nickname}}" required>
+                <input type="text" class="input" name="nickname" placeholder=" " title="Change nickname" id="nickname"
+                    value="{{nickname}}" required>
                 <div class="cut cut-short"></div>
                 <label for="nickname" class="placeholder">Nickname</label>
             </div>
             <button class="quit" type="button" title="Logs you out">Quit</button>
             <input type="submit" value="Update profile" class="submit" id="submit">
         </form>
-        <div style="flex: 50%; padding-top: 5%;">
+        <div style="flex: 33%; padding-top: 5%;">
             <button class="btn">Play</button>
             <button class="btn">Create Room</button>
             <button class="btn">Find Room</button>
         </div>
+        <div style="flex: 33%;">
+            <div class="chat_container">
+                <table>
+                    <tr>
+                        <td class="message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, illo
+                            soluta! Est cumque eaque exercitationem officiis. Impedit labore ex dignissimos fugiat! Quos
+                            praesentium, ipsum ex officia ipsam a enim deserunt!</td>
+                    </tr>
+                    <tr>
+                        <td class="divider"></td>
+                    </tr>
+                </table>
+                <input type="text" name="text" id="text" class="text"> <!--FIXME: Leave input text always on the bottom-->
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
