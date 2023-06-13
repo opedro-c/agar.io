@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="../static/css/home.css">
 </head>
 <body>
-    
+    <div class="background">
+        <div style="flex: 50%;">
+            <div class="outer_profile"> <!--TODO: Add file input to change profile image -->
+                <span class="profile_image" id="profile_image"></span>
+            </div>
+            <div class="input-container">
+                <input type="text" class="input" name="nickname" placeholder=" ">
+                <div class="cut cut-short"></div>
+                <label for="nickname" class="placeholder">Nickname</label>
+            </div>
+        </div>
+        <div style="flex: 50%; padding-top: 5%;">
+            <button class="btn">Play</button>
+            <button class="btn">Create Room</button>
+            <button class="btn">Find Room</button>
+        </div>
+    </div>
 </body>
 </html>
