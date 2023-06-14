@@ -4,6 +4,7 @@ var chatInput = document.getElementById('text')
 var chatTable = document.getElementById('chat_table')
 var chatContainer = document.getElementById('chat_container')
 var currentUserNickname
+const socket = io('http://127.0.0.1:8080')
 
 async function setNickname() {
     const response = await fetch('http://127.0.0.1:5000/nickname', { method: 'GET' })
@@ -33,6 +34,10 @@ function addMessageToChat(user, message) {
     updateScroll()
 }
 
+function sendMessage() {
+    socket.emit('message', { user: currentUserNickname, message: chatInput.value })
+    chatInput.value = ''
+}
 
 profile.addEventListener('input', () => {
     if (initialNickname != document.getElementById('nickname').value) {
@@ -44,7 +49,18 @@ profile.addEventListener('input', () => {
 
 chatInput.addEventListener('keypress', (event) => {
     if (event.key == 'Enter') {
-        addMessageToChat(currentUserNickname, chatInput.value)
-        chatInput.value = ''
+        sendMessage()
     }
+})
+
+socket.on('connect', () => {
+    console.log('connected');
+})
+
+socket.on('message', (data) => {
+    addMessageToChat(data.user, data.message)
+})
+
+socket.on('error', (data) => {
+    alert('Something went wrong with the chat!');
 })

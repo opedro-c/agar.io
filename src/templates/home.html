@@ -7,6 +7,9 @@
     <title>agar.io</title>
     <link rel="stylesheet" href="../static/css/home.css">
     <link rel="stylesheet" href="../static/css/chat.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
     <script src="../static/js/home.js" defer></script>
 </head>
 
@@ -32,15 +35,7 @@
         </div>
         <div style="flex: 33%;">
             <div class="chat_container" id="chat_container">
-                <table id="chat_table">
-                    <tr>
-                        <td class="message">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, illo
-                            soluta! Est cumque eaque exercitationem officiis. Impedit labore ex dignissimos fugiat! Quos
-                            praesentium, ipsum ex officia ipsam a enim deserunt!</td>
-                    </tr>
-                    <tr>
-                        <td class="divider"></td>
-                    </tr>
+                <table id="chat_table" style="width: 100%;">
                 </table>
                 <input type="text" name="text" id="text" class="text" placeholder="Write a message...">
             </div>
