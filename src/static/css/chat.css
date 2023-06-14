@@ -27,7 +27,16 @@
 }
 
 .text {
-    width: 98%;
+    width: 100%;
     position: relative;
     bottom: 0%;
+    background-color: #303245;
+    border-radius: 5px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 12px;
+    outline: 0;
+    padding: 0px 10px 0;
+    height: 5%;
 }
