@@ -5,17 +5,18 @@ var chatTable = document.getElementById('chat_table')
 var chatContainer = document.getElementById('chat_container')
 var currentUserNickname
 const socket = io('http://127.0.0.1:8080')
+var initialNickname
 
 async function setNickname() {
     const response = await fetch('http://127.0.0.1:5000/nickname', { method: 'GET' })
     const responseJson = await response.json();
     currentUserNickname = responseJson.nickname
     nicknameInput.value = currentUserNickname
+    initialNickname = currentUserNickname
 }
 
 setNickname()
 var nicknameInput = document.getElementById('nickname');
-var initialNickname = nicknameInput.value
 
 function showSubmitButton() {
     submitButton.style.visibility = 'visible'
