@@ -50,6 +50,10 @@ function drawBall(x, y, size, color) {
   ctx.fillStyle = color;
   ctx.fill();
   ctx.closePath();
+  ctx.fillStyle = '#000000'
+  ctx.font = `${size - 8}px sans-serif`;
+  ctx.textAlign = 'center'
+  ctx.fillText(nickname, x, y)
 }
 
 // Função para limpar o canvas e desenhar novamente
