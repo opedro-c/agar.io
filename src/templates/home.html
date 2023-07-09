@@ -29,9 +29,14 @@
             <input type="submit" value="Update profile" class="submit" id="submit">
         </form>
         <div style="flex: 33%; padding-top: 5%;">
-            <button class="btn">Play</button>
-            <button class="btn">Create Room</button>
-            <button class="btn">Find Room</button>
+            <form class="form" action="http://127.0.0.1:5000/rooms/join" method="POST">
+                <div class="input-container ic2">
+                    <input name="room" class="input" type="text" placeholder=" " required/>
+                    <div class="cut cut-short"></div>
+                    <label for="room" class="placeholder">Room</label>
+                </div>
+                <button class="btn">Join Room</button>
+            </form>
         </div>
         <div style="flex: 33%;">
             <div class="chat_container" id="chat_container">

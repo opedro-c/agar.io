@@ -1,10 +1,12 @@
-from flask import Blueprint, jsonify, request, make_response, render_template
+from flask import Blueprint, jsonify, request, make_response, render_template, session
 from flask_login import current_user, login_required
+from game import socketio
 from services import auth_service, user_service
 
 
 users = Blueprint('users', __name__)
 auth = Blueprint('auth', __name__)
+rooms = Blueprint('room', __name__, url_prefix='/rooms')
 
 
 @users.route('/register', methods=['POST', 'GET'])
@@ -39,3 +41,11 @@ def login():
     if user:
         return render_template('home.html')
     return render_template('login.html', message='Wrong credentials!')
+
+@rooms.route('/join', methods=['POST'])
+def create_room():
+    room = request.form.get('room')
+    message = {'user': current_user.nickname, 'message': f"Heeey!! I'm playing on room: <b>{room}<b>"}
+    socketio.emit('message', message)
+    session['room'] = room
+    return render_template('game.html', room=session['room'])

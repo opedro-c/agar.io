@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from flask_cors import CORS
 from flask_login import LoginManager
 from flask_migrate import Migrate
+from game import socketio
+from game import socketio
 from models import db, User
 from secrets import token_hex
 from serializers import ma
@@ -16,12 +18,15 @@ def create_app():
     login_manager = LoginManager()
     login_manager.init_app(app)
 
+    socketio.init_app(app, cors_allowed_origins='*')
+
     db.init_app(app)
     ma.init_app(app)
 
-    from controllers import users, auth
+    from controllers import users, auth, rooms
     app.register_blueprint(users)
     app.register_blueprint(auth)
+    app.register_blueprint(rooms)
 
     @app.route('/')
     def home():
