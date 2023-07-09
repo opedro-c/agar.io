@@ -124,12 +124,8 @@ body {
     top: 20%;
     height: 100px;
     width: 100px;
-    background-color: #bbb;
-    border-width: thick;
-    border-color: #dc2f55;
     border-radius: 100%;
-    border-style: solid;
-    background-image: url(../ico/dog.svg);
+    background-color: #000;
     justify-content: center;
     text-align: center;
     align-items: center;
@@ -173,4 +169,10 @@ body {
     left: 25%;
     position: absolute;
     visibility: hidden;
+}
+
+.color {
+    position: relative;
+    top: 25%;
+    left: 40%;
 }

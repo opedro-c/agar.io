@@ -13,9 +13,10 @@ class UserService:
         db.session.commit()
         return user
     
-    def update_nickname(self, nickname):
+    def update(self, data):
         user = User.query.filter(User.id == current_user.id).first()
-        user.nickname = nickname
+        user.nickname = data['nickname']
+        user.color = data['color']
         db.session.commit()
         return user
 

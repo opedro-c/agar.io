@@ -20,18 +20,19 @@ def create():
         201
     )
 
-@users.route('/nickname')
+@users.route('/info')
 @login_required
-def nickname():
+def info():
     return jsonify({
-        'nickname': current_user.nickname
+        'nickname': current_user.nickname,
+        'color': current_user.color
     })
 
 @users.route('/edit', methods=['POST'])
 @login_required
 def edit():
-    user_service.update_nickname(request.form['nickname'])
-    return render_template('home.html', nickname=current_user.nickname)
+    user_service.update(request.form)
+    return render_template('home.html', nickname=current_user.nickname, color=current_user.color)
 
 @auth.route('/login', methods=['POST', 'GET'])
 def login():
@@ -47,5 +48,5 @@ def create_room():
     room = request.form.get('room')
     message = {'user': current_user.nickname, 'message': f"Heeey!! I'm playing on room: <b>{room}<b>"}
     socketio.emit('message', message)
-    session['room'] = room
-    return render_template('game.html', room=session['room'], nickname=current_user.nickname)
+    data = { 'room': room, 'nickname': current_user.nickname, 'color': current_user.color }
+    return render_template('game.html', **data)

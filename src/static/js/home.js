@@ -1,20 +1,27 @@
 var profile = document.getElementById('profile_form')
+var profileImage = document.getElementById('profile_image')
 var submitButton = document.getElementById('submit')
 var chatInput = document.getElementById('text')
 var chatTable = document.getElementById('chat_table')
 var chatContainer = document.getElementById('chat_container')
+var colorInput = document.getElementById('color')
 var currentUserNickname
+var currentUserColor
 const socket = io('http://127.0.0.1:5000')
 
-async function setNickname() {
-    const response = await fetch('http://127.0.0.1:5000/nickname', { method: 'GET' })
+async function setInfo() {
+    const response = await fetch('http://127.0.0.1:5000/info', { method: 'GET' })
     const responseJson = await response.json();
     currentUserNickname = responseJson.nickname
+    currentUserColor = responseJson.color
     nicknameInput.value = currentUserNickname
     initialNickname = currentUserNickname
+    initialColor = currentUserColor
+    colorInput.value = currentUserColor
+    profileImage.style.backgroundColor = currentUserColor
 }
 
-setNickname()
+setInfo()
 var nicknameInput = document.getElementById('nickname');
 
 function showSubmitButton() {
@@ -40,7 +47,8 @@ function sendMessage() {
 }
 
 profile.addEventListener('input', () => {
-    if (initialNickname != document.getElementById('nickname').value) {
+    if (initialNickname != document.getElementById('nickname').value ||
+        initialColor != document.getElementById('color').value) {
         showSubmitButton()
     } else {
         hideSubmitButton()

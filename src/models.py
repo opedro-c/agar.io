@@ -9,3 +9,4 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String, nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     nickname = db.Column(db.String, nullable=False)
+    color = db.Column(db.String, default='#ff0000')
