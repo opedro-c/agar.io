@@ -12,7 +12,7 @@ socket.on('connect', () => {
 })
 
 socket.on('position', (data) => {
-  players[data.nickname] = {position: data.position, size: data.size, color}
+  players[data.nickname] = {position: data.position, size: data.size, color: data.color, nickname: data.nickname}
 })
 
 // Definindo uma constante de atraso
@@ -40,11 +40,11 @@ function updateBall() {
   const dy = mouseY - ballTargetY;
   ballTargetX += dx * delay;
   ballTargetY += dy * delay;
-  socket.emit('position', {position: {x: ballTargetX, y: ballTargetY}, size: ballSize, room: room, nickname})
+  socket.emit('position', {position: {x: ballTargetX, y: ballTargetY}, size: ballSize, room: room, nickname: nickname, color: color})
 }
 
 // Função para desenhar a bola na posição atualizada
-function drawBall(x, y, size, color) {
+function drawBall(x, y, size, color, nickname) {
   ctx.beginPath();
   ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fillStyle = color;
@@ -60,7 +60,7 @@ function drawBall(x, y, size, color) {
 function redrawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for (const player in players) {
-      drawBall(players[player].position.x, players[player].position.y, players[player].size, players[player].color)
+      drawBall(players[player].position.x, players[player].position.y, players[player].size, players[player].color, players[player].nickname)
     }
   }
   
