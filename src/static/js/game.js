@@ -12,7 +12,7 @@ socket.on('connect', () => {
 })
 
 socket.on('position', (data) => {
-  players[data.nickname] = data.position
+  players[data.nickname] = {position: data.position, size: data.size}
 })
 
 // Definindo uma constante de atraso
@@ -55,10 +55,8 @@ function drawBall(x, y, size) {
 // Função para limpar o canvas e desenhar novamente
 function redrawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall(ballTargetX, ballTargetY, ballSize);
-    for (const position in players) {
-      console.log(position);
-      drawBall(position.x, position.y, position.size)
+    for (const player in players) {
+      drawBall(players[player].position.x, players[player].position.y, players[player].size)
     }
   }
   
