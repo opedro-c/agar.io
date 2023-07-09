@@ -48,4 +48,4 @@ def create_room():
     message = {'user': current_user.nickname, 'message': f"Heeey!! I'm playing on room: <b>{room}<b>"}
     socketio.emit('message', message)
     session['room'] = room
-    return render_template('game.html', room=session['room'])
+    return render_template('game.html', room=session['room'], nickname=current_user.nickname)

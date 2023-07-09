@@ -1,11 +1,19 @@
-alert(room);
-
 // Obtendo referência para o elemento canvas
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+// Objeto para guardar jogadores
+let players = {}
+
 // Conectando ao servidor web socket do jogo
 const socket = io('http://127.0.0.1:5000')
+socket.on('connect', () => {
+  socket.emit('join', { room: room })
+})
+
+socket.on('position', (data) => {
+  players[data.nickname] = data.position
+})
 
 // Definindo uma constante de atraso
 const delay = 0.1;
@@ -32,12 +40,13 @@ function updateBall() {
   const dy = mouseY - ballTargetY;
   ballTargetX += dx * delay;
   ballTargetY += dy * delay;
+  socket.emit('position', {position: {x: ballTargetX, y: ballTargetY}, size: ballSize, room: room, nickname})
 }
 
 // Função para desenhar a bola na posição atualizada
-function drawBall() {
+function drawBall(x, y, size) {
   ctx.beginPath();
-  ctx.arc(ballTargetX, ballTargetY, ballSize, 0, Math.PI * 2);
+  ctx.arc(x, y, size, 0, Math.PI * 2);
   ctx.fillStyle = 'red';
   ctx.fill();
   ctx.closePath();
@@ -46,7 +55,11 @@ function drawBall() {
 // Função para limpar o canvas e desenhar novamente
 function redrawCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawBall();
+    drawBall(ballTargetX, ballTargetY, ballSize);
+    for (const position in players) {
+      console.log(position);
+      drawBall(position.x, position.y, position.size)
+    }
   }
   
 
