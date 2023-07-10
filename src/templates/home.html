@@ -26,8 +26,10 @@
                 <div class="cut cut-short"></div>
                 <label for="nickname" class="placeholder">Nickname</label>
             </div>
-            <button class="quit" type="button" title="Logs you out">Quit</button>
             <input type="submit" value="Update profile" class="submit" id="submit">
+        </form>
+        <form name="logout" action="http://127.0.0.1:5000/logout" method="POST">
+            <input class="quit" value="Quit" type="submit" title="Logs you out">
         </form>
         <div style="flex: 33%; padding-top: 5%;">
             <form class="form" action="http://127.0.0.1:5000/rooms/join" method="POST">

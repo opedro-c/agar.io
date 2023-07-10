@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, request, make_response, render_template, session
-from flask_login import current_user, login_required
+from flask import Blueprint, jsonify, request, render_template, redirect, url_for
+from flask_login import current_user, login_required, logout_user
 from game import socketio
 from services import auth_service, user_service
 
@@ -15,10 +15,7 @@ def create():
         return render_template('register.html')
     data = request.form
     user_service.create_user(data)
-    return make_response(
-        render_template('login.html'),
-        201
-    )
+    return redirect(url_for('auth.login'))
 
 @users.route('/info')
 @login_required
@@ -32,6 +29,11 @@ def info():
 @login_required
 def edit():
     user_service.update(request.form)
+    return redirect(url_for('home'))
+
+@users.route('/home')
+@login_required
+def home():
     return render_template('home.html', nickname=current_user.nickname, color=current_user.color)
 
 @auth.route('/login', methods=['POST', 'GET'])
@@ -40,8 +42,13 @@ def login():
         return render_template('login.html')
     user = auth_service.login(request.form)
     if user:
-        return render_template('home.html')
+        return redirect(url_for('users.home'))
     return render_template('login.html', message='Wrong credentials!')
+
+@auth.route('/logout', methods=['POST'])
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 @rooms.route('/join', methods=['POST'])
 def create_room():

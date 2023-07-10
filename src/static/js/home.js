@@ -32,7 +32,7 @@ function hideSubmitButton() {
     submitButton.style.visibility = 'hidden'
 }
 
-function updateScroll(){
+function updateScroll() {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
