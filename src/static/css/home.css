@@ -176,3 +176,10 @@ body {
     top: 25%;
     left: 40%;
 }
+
+.message {
+    font-family: sans-serif;
+    color: #dc2f55 !important;
+    font-size: 12px;
+    margin-top: 10px;
+}

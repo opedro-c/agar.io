@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request, render_template, redirect, url_for
 from flask_login import current_user, login_required, logout_user
+from exceptions import DataAlreadyInUse
 from game import socketio
 from services import auth_service, user_service
 
@@ -29,7 +30,7 @@ def info():
 @login_required
 def edit():
     user_service.update(request.form)
-    return redirect(url_for('home'))
+    return redirect(url_for('users.home'))
 
 @users.route('/home')
 @login_required
@@ -57,3 +58,14 @@ def create_room():
     socketio.emit('message', message)
     data = { 'room': room, 'nickname': current_user.nickname, 'color': current_user.color }
     return render_template('game.html', **data)
+
+def handle_data_in_use(e):
+    match str(request.url_rule):
+        case '/edit':
+            return render_template('home.html', message=e.description)
+        case '/register':
+            return render_template('register.html', message=e.description)
+        case _:
+            return '<h1 style="font-family: sans-serif;">deu ruim fiote</h1>'
+
+users.register_error_handler(DataAlreadyInUse, handle_data_in_use)

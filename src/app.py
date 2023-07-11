@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, redirect, url_for
 from flask_cors import CORS
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -30,7 +30,7 @@ def create_app():
 
     @app.route('/')
     def home():
-        return render_template('register.html')
+        return redirect(url_for('auth.login'))
 
     @login_manager.user_loader
     def load_user(user_id):
