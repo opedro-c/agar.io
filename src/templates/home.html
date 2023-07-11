@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agar.io</title>
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/chat.css">
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+    <script src="../static/js/home.js" defer></script>
+</head>
+
+<body>
+    <div class="background">
+        <form name="profile_form" style="flex: 33%;" id="profile_form" action="http://127.0.0.1:5000/edit"
+            method="POST">
+            <span class="profile_image" id="profile_image"></span>
+            <input type="color" class="color" name="color" id="color" value="{{color}}">
+            <!-- <input type="file" name="profile_image" id="profile_image" class="input_profile_image" title="Change Image"> -->
+            <div class="input-container">
+                <input type="text" class="input" name="nickname" placeholder=" " title="Change nickname" id="nickname"
+                    value="{{nickname}}" required>
+                <div class="cut cut-short"></div>
+                <label for="nickname" class="placeholder">Nickname</label>
+            <div id="message">{{message}}</div>
+            </div>
+            <input type="submit" value="Update profile" class="submit" id="submit">
+        </form>
+        <form name="logout" action="http://127.0.0.1:5000/logout" method="POST">
+            <input class="quit" value="Quit" type="submit" title="Logs you out">
+        </form>
+        <div style="flex: 33%; padding-top: 5%;">
+            <form class="form" action="http://127.0.0.1:5000/rooms/join" method="POST">
+                <div class="input-container ic2">
+                    <input name="room" class="input" type="text" placeholder=" " required/>
+                    <div class="cut cut-short"></div>
+                    <label for="room" class="placeholder">Room</label>
+                </div>
+                <button class="btn">Join Room</button>
+            </form>
+        </div>
+        <div style="flex: 33%;">
+            <div class="chat_container" id="chat_container">
+                <table id="chat_table" style="width: 100%;">
+                </table>
+                <input type="text" name="text" id="text" class="text" placeholder="Write a message...">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

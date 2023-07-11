@@ -1,0 +1,42 @@
+.chat_container {
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 100%;
+    border: thin solid #bbb;
+    border-radius: 25px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.message {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: #bbb;
+    font-family: sans-serif;
+    font-size: 12px;
+    display: block;
+}
+
+.divider {
+    width: 100%;
+    position: relative;
+    background-color: #bbb;
+}
+
+.text {
+    width: 100%;
+    position: relative;
+    bottom: 0%;
+    background-color: #303245;
+    border-radius: 5px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 12px;
+    outline: 0;
+    padding: 0px 10px 0;
+    height: 5%;
+}
