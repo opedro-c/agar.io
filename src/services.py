@@ -1,4 +1,4 @@
-from flask_login import login_user, current_user
+from flask_login import AnonymousUserMixin, login_user, current_user
 from exceptions import DataAlreadyInUse
 from models import db, User
 from serializers import user_serializer
@@ -22,8 +22,13 @@ class UserService:
             raise DataAlreadyInUse('Email already in use!')
 
     def is_nickname_taken(self, data):
-        user = User.query.filter(User.nickname == data['nickname']).first()
-        if user and user.nickname != current_user.nickname:
+        user_with_nickname = User.query.filter(User.nickname == data['nickname']).first()
+        if not user_with_nickname:
+            return
+        is_current_user_nickname = False
+        if not isinstance(current_user, AnonymousUserMixin):
+            is_current_user_nickname = user_with_nickname.nickname == current_user.nickname
+        if not is_current_user_nickname:
             raise DataAlreadyInUse('Nickname already in use!')
     
     def update(self, data):

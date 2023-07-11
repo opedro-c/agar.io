@@ -1,5 +1,4 @@
 from werkzeug.exceptions import HTTPException
-from werkzeug.sansio.response import Response
 
 
 class DataAlreadyInUse(HTTPException):
