@@ -177,7 +177,7 @@ body {
     left: 40%;
 }
 
-.message {
+#message {
     font-family: sans-serif;
     color: #dc2f55 !important;
     font-size: 12px;

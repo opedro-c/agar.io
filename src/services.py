@@ -8,20 +8,20 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class UserService:
 
     def create_user(self, data):
-        self.is_nickname_or_email_taken(data)
+        self.__is_nickname_or_email_taken(data)
         user = user_serializer.load(data)
         user.password = generate_password_hash(user.password, method='sha256')
         db.session.add(user)
         db.session.commit()
         return user
 
-    def is_nickname_or_email_taken(self, data):
-        self.is_nickname_taken(data)
+    def __is_nickname_or_email_taken(self, data):
+        self.__is_nickname_taken(data)
         user = User.query.filter(User.email == data['email']).first()
         if user:
             raise DataAlreadyInUse('Email already in use!')
 
-    def is_nickname_taken(self, data):
+    def __is_nickname_taken(self, data):
         user_with_nickname = User.query.filter(User.nickname == data['nickname']).first()
         if not user_with_nickname:
             return
@@ -32,7 +32,7 @@ class UserService:
             raise DataAlreadyInUse('Nickname already in use!')
     
     def update(self, data):
-        self.is_nickname_taken(data)
+        self.__is_nickname_taken(data)
         user = User.query.filter(User.id == current_user.id).first()
         user.nickname = data['nickname']
         user.color = data['color']
